@@ -3,21 +3,21 @@
 import requests
 import json
 from pprint import pprint as pp
-import ast
-
-url = "https://www.dnd5eapi.co/api/ability-scores"
-r = requests.get(url)
-data = r.json()
 
 class DND:
+    #Base API URL
     def __init__(self):
         self.apiurl = "https://www.dnd5eapi.co/api/"
 
+    #Functions to search specific categories within the API
     def getAbilityScores(self, name = None):
+        #Appends category to base URL
         baseurl = self.apiurl + "ability-scores"
+        #If statement to change results to return everything, or information about a specific result
         if name == None:
             r = requests.get(baseurl)
             data =r.json()
+            #Produces just a list of the results without extra information
             results = data['results']
             return results
         else:
